@@ -48,7 +48,9 @@ type EnvEndpoints struct {
 	ApiManagerEndpoint      string `yaml:"api_manager_endpoint"`
 	ApiImportExportEndpoint string `yaml:"api_import_export_endpoint"`
 	ApiListEndpoint         string `yaml:"api_list_endpoint"`
+	AppListEndpoint			string `yaml:"application_list_endpoint"`
 	RegistrationEndpoint    string `yaml:"registration_endpoint"`
+	StoreEndpoint           string `yaml:"store_endpoint"`
 	TokenEndpoint           string `yaml:"token_endpoint"`
 }
 
@@ -61,6 +63,14 @@ type API struct {
 	Version  string `json:"version"`
 	Provider string `json:"provider"`
 	Status   string `json:"status"`
+}
+
+type Application struct {
+	ID         string `json:"applicationId"`
+	Name       string `json:"name"`
+	Subscriber string `json:"subscriber"`
+	Tier       string `json:"throttlingTier"`
+	Status     string `json:"status"`
 }
 
 type RegistrationResponse struct {
@@ -81,4 +91,9 @@ type TokenResponse struct {
 type APIListResponse struct {
 	Count int32 `json:"count"`
 	List  []API `json:"list"`
+}
+
+type ApplicationListResponse struct {
+	Count int32         `json:"count"`
+	List  []Application `json:"list"`
 }

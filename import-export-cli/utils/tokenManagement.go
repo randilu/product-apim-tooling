@@ -254,7 +254,7 @@ func GetClientIDSecret(username, password, url string) (clientID string, clientS
 								  "callbackUrl": "www.google.lk",
 								  "grantType":"password refresh_token",
 								  "saasApp": true,
-								  "owner": "admin",
+								  "owner": "`+username+`",
 								  "tokenScope": "Production"
 							     }`)
 	headers := make(map[string]string)
@@ -313,7 +313,7 @@ func GetBase64EncodedCredentials(key, secret string) (encodedValue string) {
 func GetOAuthTokens(username, password, b64EncodedClientIDClientSecret, url string) (map[string]string, error) {
 	validityPeriod := DefaultTokenValidityPeriod
 	body := "grant_type=password&username=" + username + "&password=" + password + "&validity_period=" +
-		validityPeriod + "&scope=apim:api_view"
+		validityPeriod + "&scope=apim:api_view+apim:subscribe"
 
 	// set headers
 	headers := make(map[string]string)

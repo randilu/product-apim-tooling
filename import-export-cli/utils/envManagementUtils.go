@@ -171,6 +171,18 @@ func GetApiImportExportEndpointOfEnv(env, filePath string) string {
 	}
 }
 
+// Get StoreEndpoint of a given environment
+func GetStoreEndpointOfEnv(env, filePath string) string {
+	envEndpoints, _ := GetEndpointsOfEnvironment(env, filePath)
+	if !(envEndpoints.StoreEndpoint == "" || envEndpoints == nil) {
+		return envEndpoints.StoreEndpoint
+	} else {
+		apiManagerEndpoint := GetApiManagerEndpointOfEnv(env, filePath)
+		apiManagerEndpoint = AppendSlashToString(apiManagerEndpoint)
+		return apiManagerEndpoint + defaultApplicationImportExportSuffix
+	}
+}
+
 // Get ApiListEndpoint of a given environment
 func GetApiListEndpointOfEnv(env, filePath string) string {
 	envEndpoints, _ := GetEndpointsOfEnvironment(env, filePath)
@@ -180,6 +192,18 @@ func GetApiListEndpointOfEnv(env, filePath string) string {
 		apiManagerEndpoint := GetApiManagerEndpointOfEnv(env, filePath)
 		apiManagerEndpoint = AppendSlashToString(apiManagerEndpoint)
 		return apiManagerEndpoint + defaultApiListEndpointSuffix
+	}
+}
+
+// Get ApplicationListEndpoint of a given environment
+func GetApplicationListEndpointOfEnv(env, filePath string) string {
+	envEndpoints, _ := GetEndpointsOfEnvironment(env, filePath)
+	if !(envEndpoints.AppListEndpoint == "" || envEndpoints == nil) {
+		return envEndpoints.AppListEndpoint
+	} else {
+		apiManagerEndpoint := GetApiManagerEndpointOfEnv(env, filePath)
+		apiManagerEndpoint = AppendSlashToString(apiManagerEndpoint)
+		return apiManagerEndpoint+defaultApplicationListEndpointSuffix
 	}
 }
 

@@ -18,9 +18,20 @@
 
 package main
 
-import "github.com/wso2/product-apim-tooling/import-export-cli/cmd"
+import (
+	"github.com/wso2/product-apim-tooling/import-export-cli/cmd"
+
+)
 
 func main() {
 
+	/*err := doc.GenMarkdownTree(cmd.ExportAppCmd, "/home/randilu/go/src/github.com/randilu/cobra-app/tmp")
+	if err != nil {
+		log.Fatal(err)
+	}*/
+
+
 	cmd.Execute()
 }
+
+
